@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>FoodLens — AI Indian Food Recognition</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" />
+</head>
+<body>
+
+  <div class="board">
+    <!-- LEFT: chalkboard identity panel -->
+    <aside class="board__menu">
+      <div class="menu__brand">
+        <span class="menu__mark">◐</span>
+        <h1 class="menu__title">FoodLens</h1>
+      </div>
+      <p class="menu__tagline">Point a photo at the counter.<br>The kitchen tells you what it is.</p>
+
+      <ul class="menu__specials">
+        <li>Biryani</li>
+        <li>Dosa</li>
+        <li>Samosa</li>
+        <li>Idli</li>
+        <li>Gulab Jamun</li>
+        <li>Pav Bhaji</li>
+        <li>Chole Bhature</li>
+        <li>+ 18 more</li>
+      </ul>
+
+      <div class="menu__today" id="todayLog">
+        <p class="menu__todayLabel">today's log</p>
+        <p class="menu__todayCalories"><span id="todayTotal">0</span> kcal</p>
+        <p class="menu__todayCount"><span id="todayCount">0</span> item(s) logged</p>
+        <button class="menu__clearLog" id="clearLogBtn">Clear</button>
+      </div>
+
+      <p class="menu__note">CNN-based image recognition · Indian dishes · nutrition estimates are typical values, not lab-measured</p>
+    </aside>
+
+    <!-- RIGHT: order-ticket workspace -->
+    <main class="board__ticket">
+
+      <section id="uploadStage" class="stage">
+        <div class="dropzone" id="dropzone" tabindex="0" role="button" aria-label="Upload a food photo">
+          <input type="file" id="fileInput" accept="image/jpeg,image/png,image/jpg" hidden />
+          <div class="dropzone__glyph">＋</div>
+          <p class="dropzone__title">Drop a food photo here</p>
+          <p class="dropzone__sub">or click to browse — JPG or PNG</p>
+        </div>
+        <p class="stage__error" id="errorMsg" hidden></p>
+      </section>
+
+      <section id="previewStage" class="stage" hidden>
+        <div class="ticket" id="printArea">
+          <div class="ticket__photo">
+            <img id="previewImg" alt="Uploaded food photo" />
+          </div>
+
+          <div class="ticket__body">
+            <p class="ticket__label">order ticket</p>
+
+            <div id="loadingRow" class="ticket__loading">
+              <span class="dot"></span><span class="dot"></span><span class="dot"></span>
+              <span class="ticket__loadingText">Reading the plate…</span>
+            </div>
+
+            <div id="resultRow" class="ticket__result" hidden>
+              <div class="ticket__nameRow">
+                <span class="dietDot" id="dietDot" title=""></span>
+                <div>
+                  <p class="ticket__eyebrow">Kitchen says it's</p>
+                  <h2 id="resultLabel" class="ticket__foodName">—</h2>
+                  <p class="ticket__hindiName" id="resultHindi"></p>
+                </div>
+              </div>
+
+              <div class="confidence">
+                <div class="confidence__bar">
+                  <div class="confidence__fill" id="confidenceFill"></div>
+                </div>
+                <span class="confidence__value" id="confidenceValue">0%</span>
+              </div>
+
+              <div class="ticket__alt" id="altRow"></div>
+
+              <div class="nutrition" id="nutritionCard">
+                <p class="nutrition__label">nutrition · per 100g</p>
+                <div class="nutrition__grid">
+                  <div class="nutrition__stat">
+                    <span class="nutrition__value" id="nutCalories">—</span>
+                    <span class="nutrition__key">Calories</span>
+                  </div>
+                  <div class="nutrition__stat">
+                    <span class="nutrition__value" id="nutProtein">—</span>
+                    <span class="nutrition__key">Protein</span>
+                  </div>
+                  <div class="nutrition__stat">
+                    <span class="nutrition__value" id="nutCarbs">—</span>
+                    <span class="nutrition__key">Carbs</span>
+                  </div>
+                  <div class="nutrition__stat">
+                    <span class="nutrition__value" id="nutFat">—</span>
+                    <span class="nutrition__key">Fat</span>
+                  </div>
+                  <div class="nutrition__stat">
+                    <span class="nutrition__value" id="nutCalcium">—</span>
+                    <span class="nutrition__key">Calcium</span>
+                  </div>
+                </div>
+              </div>
+
+              <p class="walkNote" id="walkNote" hidden>🚶 Walk about <strong id="walkMinutes">—</strong> min to burn off a typical 150g serving</p>
+
+              <p class="ticket__demoNotice" id="demoNotice" hidden>
+                Demo mode — no trained model loaded yet, so this is a simulated result. Train with <code>train.py</code> / <code>train_on_colab.ipynb</code> for genuine predictions.
+              </p>
+              <p class="ticket__nutriNotice">Nutrition values are typical estimates, not lab-measured for this exact photo.</p>
+
+              <div class="actionRow no-print">
+                <button class="btn-action" id="listenBtn">🔊 Listen</button>
+                <button class="btn-action" id="logBtn">+ Add to today's log</button>
+                <button class="btn-action" id="printBtn">🖨️ Save as PDF</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <button class="btn-secondary no-print" id="resetBtn">Try another photo</button>
+      </section>
+
+    </main>
+  </div>
+
+  <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
