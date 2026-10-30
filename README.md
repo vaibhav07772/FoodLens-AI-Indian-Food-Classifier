@@ -1,22 +1,14 @@
 # 🍽️ FoodLens AI — Indian Food Recognition & Nutrition Estimator
 
-<p align="center">
-  <strong>AI-Powered Indian Food Classification using Deep Learning</strong>
-</p>
+**AI-Powered Indian Food Classification using Deep Learning**
 
-<p align="center">
-  Upload an image of an Indian dish and get its predicted food name, confidence score, top-3 predictions, and estimated nutritional information.
-</p>
+Upload an image of an Indian dish and get its predicted food name, confidence score, top-3 predictions, and estimated nutritional information.
 
-<p align="center">
-  ![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
-  ![TensorFlow](https://img.shields.io/badge/TensorFlow-2.16.1-FF6F00?logo=tensorflow&logoColor=white)
-  ![Flask](https://img.shields.io/badge/Flask-3.0.3-000000?logo=flask&logoColor=white)
-  ![Deep Learning](https://img.shields.io/badge/Deep%20Learning-CNN-blueviolet)
-  ![Status](https://img.shields.io/badge/Project-MVP-orange)
-</p>
-
----
+![Python](https://img.shields.io/badge/Python-3.10+-3776AB?logo=python&logoColor=white)
+![TensorFlow](https://img.shields.io/badge/TensorFlow-2.16.1-FF6F00?logo=tensorflow&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-3.0.3-000000?logo=flask&logoColor=white)
+![Deep Learning](https://img.shields.io/badge/Deep%20Learning-CNN-blueviolet)
+![Status](https://img.shields.io/badge/Project-MVP-orange)
 
 ## 📌 Overview
 
